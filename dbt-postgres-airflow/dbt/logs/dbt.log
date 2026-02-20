@@ -269,3 +269,19 @@ Runtime Error
 [0m08:55:28.338170 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79575bb18940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79575aa2b9a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79575aa2bc10>]}
 [0m08:55:28.339225 [debug] [MainThread]: Flushing usage events
 [0m08:55:28.816803 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:42:22.515713 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d131d5389d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d131c6831f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d131c680e20>]}
+
+
+============================== 09:42:22.521316 | e0afd9e1-e2c5-4ceb-b895-6183bfc35cff ==============================
+[0m09:42:22.521316 [info ] [MainThread]: Running with dbt=1.11.2
+[0m09:42:22.522242 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt compile', 'partial_parse': 'True', 'introspect': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'version_check': 'True', 'log_format': 'default', 'no_print': 'None', 'printer_width': '80', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'log_path': 'logs', 'warn_error': 'None', 'quiet': 'False', 'indirect_selection': 'eager', 'profiles_dir': '/home/calvin/.dbt', 'fail_fast': 'False', 'cache_selected_only': 'False', 'write_json': 'True', 'use_colors': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'target_path': 'None'}
+[0m09:42:22.523075 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/calvin/repos/dbt-postgres-airflow/dbt/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m09:42:22.524472 [debug] [MainThread]: Resource report: {"command_name": "compile", "command_success": false, "command_wall_clock_time": 0.108851545, "process_in_blocks": "64", "process_kernel_time": 0.310665, "process_mem_max_rss": "95240", "process_out_blocks": "8", "process_user_time": 2.433545}
+[0m09:42:22.525231 [debug] [MainThread]: Command `dbt compile` failed at 09:42:22.525040 after 0.11 seconds
+[0m09:42:22.525927 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d131d5389d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d131c683460>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d131c6831f0>]}
+[0m09:42:22.526755 [debug] [MainThread]: Flushing usage events
+[0m09:42:22.985369 [debug] [MainThread]: An error was encountered while trying to flush usage events
