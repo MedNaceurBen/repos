@@ -11,6 +11,7 @@ venv/
 target/
 dbt_packages/
 logs/
+dbt.log
 manifest.json
 run_results.json
 
