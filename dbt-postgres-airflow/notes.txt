@@ -500,3 +500,58 @@ https://www.youtube.com/watch?v=zZVQluYDwYY&t=7450s
 https://www.youtube.com/watch?v=jB6p6nz13Kg&t=2247s
 
 https://chatgpt.com/c/6996b506-6ed0-8325-8845-6a0b70c90644
+https://weatherstack.com/
+
+1️⃣ Vérifier que Git est installé dans WSL
+
+Dans ton terminal WSL :
+
+git --version
+
+Si ce n’est pas installé :
+
+sudo apt update
+sudo apt install git
+2️⃣ Configurer Git (une seule fois)
+git config --global user.name "Ton Nom"
+git config --global user.email "tonemail@example.com"
+3️⃣ Créer un dépôt sur GitHub
+
+Va sur :
+👉 https://github.com
+
+Clique sur New repository
+
+Donne un nom
+
+Clique sur Create repository
+
+4️⃣ Initialiser Git dans ton projet (dans WSL)
+
+Va dans ton dossier projet :
+
+cd chemin/vers/ton/projet
+
+Puis :
+
+git init
+git add .
+git commit -m "Premier commit"
+5️⃣ Lier ton projet à GitHub
+
+GitHub va te donner une URL comme :
+
+https://github.com/tonpseudo/nom-du-repo.git
+
+Ajoute-la :
+
+git remote add origin https://github.com/tonpseudo/nom-du-repo.git
+git branch -M main
+git push -u origin main
+
+
+
+
+
+https://chatgpt.com/c/6996b506-6ed0-8325-8845-6a0b70c90644
+https://weatherstack.com/

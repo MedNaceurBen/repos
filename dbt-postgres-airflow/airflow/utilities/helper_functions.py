@@ -62,6 +62,15 @@ def create_schema_table(conn):
                 inserted_at TIMESTAMP DEFAULT NOW(),
                 utc_offset TEXT
             );
+
+            CREATE TABLE IF NOT EXISTS dev.city_info (
+                id SERIAL PRIMARY KEY,
+                name TEXT,
+                country TEXT,
+                latitude NUMERIC,
+                longitude NUMERIC,
+                inserted_at TIMESTAMP DEFAULT NOW()
+            );
         """)
         conn.commit()
         logger.info("schema and table ensured.")
@@ -94,6 +103,22 @@ def insert_records(conn, data):
             location['localtime'],
             location['utc_offset']
         ))
+
+        cursor.execute("""
+            INSERT INTO dev.city_info(
+                name,
+                country,
+                latitude ,
+                longitude ,
+                inserted_at
+            ) VALUES (%s, %s, %s, %s, NOW())
+        """, (
+            location['name'],
+            location['country'],
+            location['lat'],
+            location['lon']
+        )
+        )
         conn.commit()
         logger.info("insert successfully completed.")
     except psycopg2.Error as e :

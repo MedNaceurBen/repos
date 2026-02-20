@@ -6,21 +6,36 @@ sources:
     database: dw
     tables:
       - name: weather_report
-        description: "Raw   weather report ingested from Weatherstack API"
+        description: "Raw weather report ingested from Weatherstack API"
         columns:
-        - name: id
-          description: "Primary key"
-        - name: city
-          description: "City name"
-        - name: temperature
-          description: "Temperature in Celsius"
-        - name: weather_descriptions
-          description: "Short text description of the weather"
-        - name: wind_speed
-          description: "Wind speed in km/h"
-        - name: time
-          description: "Report lacal time for the weather data"
-        - name: inserted_at
-          description: "Time the data was inserted into the database"
-        - name: utc_offset
-          description: "Offset from UTC in hours"
+          - name: id
+            description: "Primary key"
+          - name: city
+            description: "City name"
+          - name: temperature
+            description: "Temperature in Celsius"
+          - name: weather_descriptions
+            description: "Short text description of the weather"
+          - name: wind_speed
+            description: "Wind speed in km/h"
+          - name: time
+            description: "Report local time for the weather data"
+          - name: inserted_at
+            description: "Time the data was inserted into the database"
+          - name: utc_offset
+            description: "Offset from UTC in hours"
+      - name: city_info
+        description: "City information ingested from Weatherstack API"
+        columns:
+          - name: id
+            description: "City Primary key"
+          - name: name
+            description: "City name"
+          - name: country
+            description: "Country name"
+          - name: latitude
+            description: "City latitude"
+          - name: longitude
+            description: "City longitude"
+          - name: inserted_at
+            description: "Time the data was inserted into the city_info table"
