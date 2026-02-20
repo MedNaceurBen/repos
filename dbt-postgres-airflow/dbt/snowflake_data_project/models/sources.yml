@@ -1,0 +1,23 @@
+version: 2 
+
+sources:
+  - name : raw_data
+    database: finance_db
+    schema: raw
+    tables:
+      - name: customers
+      - name: orders
+      - name: order_items
+      - name: products
+      - name: stg_orders
+        columns: 
+        - name: order_status
+          tests:
+          - accepted_values:
+              values: ['Pending', 'Cancelled', 'Completed']
+      - name: stg_customers
+        columns: 
+        - name: id_customer
+          tests:
+          - unique
+                  

@@ -1,0 +1,502 @@
+homebrew -> python -> dbt & airflow
+
+https://github.com/Homebrew/install
+https://github.com/pyenv/pyenv?tab=readme-ov-file#linuxunix
+https://github.com/pyenv/pyenv/wiki/Common-build-problems
+
+
+
+docker-compose up -d   -->W to lunch the dockers
+docker ps    --> to seeif we still has access to docker
+docker-compose exec dw psql -U dw_user -d dw -c "select * from my_first_dbt_model;"  ---> pour executer une commande directement
+
+
+docker-compose exec dw psql -U dw_user -d dw  
+---> Cette commande ouvre une session psql à l’intérieur du conteneur Docker dw afin de se connecter à la base PostgreSQL dw avec l’utilisateur dw_user.
+---> Cette commande te permet de te connecter à la base de données dw avec l’utilisateur dw_user directement dans le conteneur Docker dw et d’ouvrir un terminal SQL (psql) pour exécuter des requêtes.
+1️⃣ docker-compose exec dw
+docker-compose est l’outil qui gère tes conteneurs définis dans docker-compose.yml.
+exec permet d’exécuter une commande à l’intérieur d’un conteneur déjà en cours d’exécution.
+dw est le nom du conteneur.
+→ Donc ici, on dit : « Exécute la commande suivante à l’intérieur du conteneur dw ».
+
+2️⃣ psql
+psql est le client en ligne de commande de PostgreSQL.
+Il permet de se connecter à une base de données et d’exécuter des requêtes SQL directement depuis le terminal.
+
+3️⃣ -U dw_user
+-U indique le nom d’utilisateur PostgreSQL.
+Ici, dw_user est l’utilisateur avec lequel tu te connectes à la base.
+
+4️⃣ -d dw
+-d indique le nom de la base de données à laquelle se connecter.
+Ici, dw est le nom de ta base de données.
+
+
+
+
+\l          ---> donne liste des base de donnees
+\dn         ---> donne liste des schémas ( tu peux trouver les nom des schema dans .dbt/profiles.yml)
+\dt dev.*   ---> Montre liste des tables du schéma dev
+\dv dev.*   ---> Montre liste des views  du schéma dev
+
+
+
+📌 dbt_project.yml  — Résumé
+dbt_project.yml est le fichier principal de configuration d’un projet dbt.
+👉Il sert à dire à dbt :
+- le nom du projet
+- quel profile utiliser pour se connecter à la base
+- où se trouvent les fichiers (models, tests, macros…)
+- comment créer les tables/vues (views, tables, incremental)
+
+📌 profiles.yml — Résumé
+profiles.yml est le fichier de connexion aux bases de données pour dbt.
+👉 Il dit à dbt :
+- à quelle base se connecter
+- avec quel utilisateur
+- sur quel schéma
+
+
+
+🔹 Qu’est-ce que .bashrc ?
+C’est un fichier de configuration pour le terminal Bash.
+Il se trouve dans ton dossier personnel 
+Son rôle principal : définir l’environnement du terminal à chaque ouverture. (envir virtuel, base home de airflow....)
+donc on peut mettre pour configuer home base of airflow ça : 
+export AIRFLOW_HOME=~/repos/dbt-postgres-airflow/airflow
+source ~/.bashrc   pour mis a jour config  in bashrc sans fermer terminal
+
+
+
+pyenv virtualenv 3.10.19 demo_dbt
+pyenv local demo_dbt
+
+ip addr show eth0
+http://172.22.13.195:8080
+
+airflow standalone
+
+
+DAG(
+- request data from api -> json 
+- connect postgres db 
+- creqte schema and table 
+- insert records
+)
+
+https://www.youtube.com/watch?v=OLXkGB7krGo
+https://github.com/InfuseAI/awesome-public-dbt-projects
+https://weatherstack.com/
+
+https://chatgpt.com/c/69731640-469c-8332-a40a-c74fa139973b
+https://chatgpt.com/c/6975c737-6c8c-8396-a514-5b234e908490
+https://chatgpt.com/c/6979acd3-a508-8329-b8f9-ef22b1c4ef38
+https://chatgpt.com/c/697b05c6-55f8-8328-a484-725d383018a6
+
+print(json.dumps(data, indent=2))
+
+Pour detecter s'il ya erreur pour lacer dags:
+airflow dags list-import-errors
+
+
+ctr + alt pour selectionner diiffenrte ligne
+
+
+
+
+
+
+
+
+
+
+New project : snowflake + dbt
+
+281997!Med..281997!Med..
+
+
+https://chatgpt.com/c/69805269-80bc-832a-963d-d51044c9f325
+
+
+
+
+- astro & Cosmos
+https://chatgpt.com/c/69897d9d-4900-832f-9100-1f7b3220f358
+
+Astro : “Je t’installe et je gère Airflow sans prise de tête”
+Cosmos : “Je transforme ton projet dbt en DAG Airflow automatiquement”
+
+
+brew install astro
+astro dev init
+
+https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver
+
+
+
+
+dbt formation:
+https://chatgpt.com/c/69887e31-4e64-8331-9b64-47a833f7ab87
+https://chatgpt.com/c/698a3746-c1a8-832c-b95a-a34980c457bc
+projet dbt snowflake
+https://www.youtube.com/watch?v=x8DE4DprAzY&list=PLYaPThD6DUS-N6aovIgkc871NJZyw8rY7&index=3
+https://flnolxa-za66227.snowflakecomputing.com/console/login
+
+Pourquoi qu'on on charge les donnees dans les tables on a utilisé snowflake par seed (dbt) ?
+--> car seed fait le chargement raw by raw --> prend bcp de temps si la 
+--> à chaque fois on veux faire mis à jour les doonees seed methode repete des le debut chargement (ovverride et repet) ne fais pas d'une façon incrimentale 
+
+
+- Pourquoi qu'on on charge les donnees dans les tables on a utilisé snowflake par seed (dbt) ?
+
+--> car seed fait le chargement raw by raw --> prend bcp de temps si la 
+--> à chaque fois on veux faire mis à jour les doonees seed methode repete des le debut chargement (ovverride et repet) ne fais pas d'une façon incrimentale 
+--> dbt store data dans mon repository local donc on ne peux pas mettre file volumienux prend beaucoup d'espace m dbt repo --> nous faire un probleme quand on va faire des choses avec git
+	--> dbt utilise seed que si le file petit comme lookups ne change pas beaucoup..
+
+
+- Dans snowflake j'ai utilise load data quand data n'est pas troooop volumineux sinon j'utilise la deuxieme method copy into quand data est tres volumineux
+---> copy into method : 1er chose creqtion du stage pour mettre dedqns des fichier externe continent les donne à chrger apres ça 2eme on fait copy m file qui est dans stage vers la table
+	--> utilisé aussi quand on a des fichier dans des stockage externe comme S3.. 
+
+
+
+
+
+👉 Un schema, c’est un dossier dans une base de données.
+Il sert à organiser les tables et les vues.
+
+📦 Database → grande boîte
+📁 Schema → sous-dossier
+📄 Table / View → fichiers
+
+Exemple :
+
+database.analytics
+ ├─ raw
+ ├─ staging
+ └─ mart
+
+
+raw : données brutes
+
+staging : données nettoyées
+
+mart : données finales pour l’analyse
+
+En Snowflake / dbt, on écrit :
+
+database.schema.table
+
+
+👉 dbt utilise les schemas pour séparer raw / staging / mart.
+
+C’est tout 👌
+
+
+
+🧠 Un warehouse = le moteur de calcul de Snowflake
+
+
+
+
+
+2️⃣ warehouse_size = 'x-small'
+
+👉 Taille du warehouse
+
+x-small = le plus petit (le moins cher 💰)
+
+suffisant pour dbt, tests, apprentissage
+
+Autres tailles : small, medium, large, etc.
+
+3️⃣ auto_suspend = 62
+
+👉 Après 62 secondes d’inactivité :
+
+le warehouse s’éteint automatiquement
+
+🎯 Objectif :
+
+éviter de payer quand personne ne l’utilise
+
+📌 Bonne pratique : entre 60 et 300 secondes
+
+4️⃣ auto_resume = TRUE
+
+👉 Quand une requête arrive :
+
+le warehouse se rallume tout seul
+
+Sans ça :
+❌ il faudrait le démarrer manuellement
+
+5️⃣ initially_suspended = TRUE
+
+👉 Juste après la création :
+
+le warehouse reste éteint
+
+Pourquoi ?
+
+éviter qu’il démarre pour rien
+
+il démarrera seulement quand une requête arrive
+
+
+
+
+1️⃣ Quand utiliser VARCHAR
+
+Quand tu veux préciser une longueur maximale pour la lisibilité ou la documentation.
+
+Exemple classique :
+
+name VARCHAR(50)  -- max 50 caractères
+email VARCHAR(255)  -- max 255 caractères
+
+
+Utile pour documents, ETL, validation de données
+
+Bon pour SQL pur ou si tu viens d’autres bases (MySQL, PostgreSQL)
+
+2️⃣ Quand utiliser STRING
+
+Quand tu ne veux pas te soucier de la longueur
+
+Utile pour les champs qui peuvent être très longs ou variables, comme description, notes, json_data…
+
+Exemple :
+
+
+
+
+| Situation                             | Type recommandé | Pourquoi                                  |
+| ------------------------------------- | --------------- | ----------------------------------------- |
+| Champ avec longueur connue et limitée | `VARCHAR(50)`   | Documenter et valider les données         |
+| Champ très variable ou texte long     | `STRING`        | Simple, pas besoin de définir la longueur |
+| dbt / pipelines modernes              | `STRING`        | Plus lisible, compatible avec Snowflake   |
+
+
+
+Steps snowflake-dbt-airflow prject arabic:
+
+1) prepare env in snwoflake ( create wh, db, schema, tables, load data with stage or thers....)
+2) dbt : 
+	1- etablish connection between dbt and snowflake (dbt init name_project -> put configs... --> cd dbt_project and dbt debug to test connection )
+	2- dbt veut comprendre l'architecture de mes donnees (db, schema, tabeles..) -> pour ce faire creer ficher source.yml dans le dossier models ce ficher contient all sources
+		-> 2 avantages de ce sourcefile : 
+			* si on change database or schema on va juste changer ce fichier sources.yml et touts les ficher models vont etre au courant directement depuis ce ficher 
+			* data lineage when we want to see the data come from, and went where all steps data had taken
+	3- va voir les donnees dans snwoflake pour voir quels sont les changement que tu dois faire
+	--> dbt models folders  : 
+		-> staging: step of data cleaning (exemp: renmae, remove, add colounm...) no analystics here  --> cleaning of raw data (données brutes)
+			--> inside staging folder creqte always files start by stg_...
+		-> marts : step where there's agregation, joins, counts, link between tables... where ethere's complex queries
+	--> dbt run pour voir staging... stg..
+
+
+
+
+
+
+
+
+
+	🟢 1️⃣ VIEW
+
+Une view = une requête sauvegardée
+Elle ne stocke pas les données, elle exécute le SQL à chaque fois.
+
+👉 C’est comme un “SELECT enregistré”.
+
+✅ Quand utiliser une VIEW ?
+
+Tables de staging (stg_)
+
+Transformations simples
+
+Quand les données changent souvent
+
+Quand tu veux économiser du stockage
+
+Pendant le développement
+
+Exemple :
+{{ config(materialized='view') }}
+
+Avantages :
+
+✔ Pas de stockage
+✔ Toujours à jour
+✔ Rapide à créer
+
+Inconvénient :
+
+❌ Peut être plus lent si la requête est lourde (elle se recalcul à chaque SELECT)
+
+🔵 2️⃣ TABLE
+
+Une table = les données sont physiquement stockées.
+
+👉 Le SQL s’exécute une fois, puis les résultats sont enregistrés.
+
+✅ Quand utiliser une TABLE ?
+
+Modèles lourds
+
+Agrégations
+
+Fact tables
+
+Modèles utilisés souvent
+
+Production
+
+Exemple :
+{{ config(materialized='table') }}
+
+Avantages :
+
+✔ Plus rapide à lire
+✔ Stable
+✔ Bon pour les dashboards
+
+Inconvénient :
+
+❌ Prend de l’espace
+❌ Doit être reconstruite si les données changent
+
+
+
+🔹 Conclusion
+Type	Caractéristique	Ton exemple
+Intermediate model	Prépare les données, pas forcément prêt pour BI	Ce que tu fais si c’est juste pour nettoyer / joindre staging
+Fact model	Ligne par transaction / événement, métrique calculée	Ce que tu fais si tu veux créer la table fact_orders pour le reporting
+
+💡 Donc selon le contexte :
+
+Si tu prépares juste une étape intermédiaire → intermediate model
+
+Si c’est destiné à ton fact table → fact model, et là ça correspond très bien à une fact_orders avec total_price comme métrique.
+
+
+
+🔹 Résumé simple
+Test	Où il est défini	Comment dbt le teste
+Generic / standard	YAML (schema.yml ou sources.yml)	dbt génère SQL automatiquement
+Singular / métier	Fichier SQL dans tests/	dbt exécute le SQL directement
+💡 Conclusion
+
+Oui, dbt test teste tout ce qui est déclaré comme test
+
+Que ce soit dans le YAML sources ou models
+
+Ou dans les fichiers SQL sous tests/
+
+
+dbt test
+dbt docs generate
+dbt docs serve --port 8088
+
+calvin@DESKTOP-BT794FD:~/repos/dbt-postgres-airflow/airflow_snowflake$ python -m venv airflow_snow_venv
+calvin@DESKTOP-BT794FD:~/repos/dbt-postgres-airflow/airflow_snowflake$ source airflow_snow_venv/bin/activate
+
+airflow db migrate
+
+🔹 2️⃣ À quoi sert cette base ?
+
+Elle stocke :
+
+📌 Les DAGs détectés
+
+📌 Les exécutions des DAGs (dag runs)
+
+📌 Les statuts des tâches (success, failed, running…)
+
+📌 Les connexions (ex: Snowflake)
+
+📌 Les variables Airflow
+
+📌 Les utilisateurs (si auth activée)
+
+👉 Sans cette base, Airflow ne peut rien suivre.
+
+🔹 3️⃣ Important : ce n’est PAS ta base Snowflake
+
+Beaucoup de gens confondent.
+
+❌ Ce n’est pas ta base Snowflake
+
+❌ Ce n’est pas ta base métier
+
+✅ C’est la base interne d’Airflow
+
+Elle sert uniquement à gérer le fonctionnement d’Airflow.
+
+🔹 4️⃣ Qu’est-ce que ça change pour toi ?
+
+Maintenant que la base est créée :
+
+✔️ Tu peux lancer le webserver
+✔️ Tu peux lancer le scheduler
+✔️ Tu peux créer des DAGs
+✔️ Airflow pourra suivre leurs exécutions
+
+🔹 5️⃣ Prochaine étape logique
+
+
+
+
+
+pyenv virtualenv 3.10.19 airflow_snowflake_venv
+cd to folder and do : 
+pyenv local airflow_snowflake_venv
+mettre dans fichrier .bashrc : 
+export AIRFLOW_HOME=~/repos/dbt-postgres-airflow/airflow_snowflake/
+source ~/.bashrc
+go off and go on de dossier
+
+pip install apache-airflow
+pip install apache-airflow-providers-snowflake
+airflow db migrate
+mkdir dags
+crrer ficher dbt_dag.py dans folder dags
+
+https://github.com/ansamAY/end-to-end-data-engineering-dbt-snowflake-airflow
+
+
+
+4️⃣ Explication de la commande bash
+
+cd /home/calvin/repos/dbt-postgres-airflow/dbt/snowflake_data_project
+
+cd = change directory (changer de dossier)
+
+On se place dans le dossier du projet dbt.
+
+dbt a besoin d’être lancé dans le dossier du projet, sinon il ne trouvera pas dbt_project.yml ni tes modèles.
+
+&&
+
+Exécute la commande suivante seulement si la commande précédente a réussi.
+
+Ici : si le cd fonctionne, alors on lance dbt.
+
+/home/calvin/.pyenv/versions/demo_dbt/bin/dbt run
+
+C’est le chemin complet vers l’exécutable dbt dans ton virtualenv demo_dbt.
+
+dbt run = lance tous les modèles dbt de ton projet, c’est-à-dire qu’il va créer ou mettre à jour les tables dans ta base de données.
+
+https://www.youtube.com/watch?v=AmRvNJaECqo
+
+https://www.youtube.com/@Vishikaushal
+https://www.youtube.com/watch?v=wKZ285VKRew&list=PL__gObEGy1Y5jmkhnNIY4uk4Na0Mjd_bK&index=10
+
+https://www.youtube.com/watch?v=zZVQluYDwYY&t=7450s
+https://www.youtube.com/watch?v=jB6p6nz13Kg&t=2247s
+
+https://chatgpt.com/c/6996b506-6ed0-8325-8845-6a0b70c90644

@@ -1,0 +1,23 @@
+{"timestamp":"2026-02-01T09:46:18.461306Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2026-02-01T09:46:18.518677Z","level":"info","event":"Filling up the DagBag from /home/calvin/repos/dbt-postgres-airflow/airflow/dags/combined_orchestrator.py","logger":"airflow.models.dagbag.DagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2026-02-01T09:46:19.422435Z","level":"warning","event":"The `airflow.operators.bash.BashOperator` attribute is deprecated. Please use `'airflow.providers.standard.operators.bash.BashOperator'`.","category":"DeprecatedImportWarning","filename":"/home/calvin/repos/dbt-postgres-airflow/airflow/dags/combined_orchestrator.py","lineno":10,"logger":"py.warnings"}
+{"timestamp":"2026-02-01T09:46:19.423097Z","level":"warning","event":"The `airflow.operators.python.PythonOperator` attribute is deprecated. Please use `'airflow.providers.standard.operators.python.PythonOperator'`.","category":"DeprecatedImportWarning","filename":"/home/calvin/repos/dbt-postgres-airflow/airflow/dags/combined_orchestrator.py","lineno":11,"logger":"py.warnings"}
+{"timestamp":"2026-02-01T09:46:19.671247Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-02-01T09:46:19.671732Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-02-01T09:46:19.672066Z","level":"info","event":"Current task name:ingest_weather_data","logger":"task.stdout"}
+{"timestamp":"2026-02-01T09:46:19.672400Z","level":"info","event":"Dag name:combined_orchestrator","logger":"task.stdout"}
+{"timestamp":"2026-02-01T09:46:19.698006Z","level":"info","event":"Starting weather data ETL process","logger":"helper_functions","filename":"helper_functions.py","lineno":105}
+{"timestamp":"2026-02-01T09:46:19.720154Z","level":"info","event":"Fetching weatherd data from Weatherstack API...","logger":"helper_functions","filename":"helper_functions.py","lineno":22}
+{"timestamp":"2026-02-01T09:46:20.267399Z","level":"info","event":"API response received sucessfully.","logger":"helper_functions","filename":"helper_functions.py","lineno":26}
+{"timestamp":"2026-02-01T09:46:20.279574Z","level":"info","event":"Connecting to the PostgresSQL database...","logger":"helper_functions","filename":"helper_functions.py","lineno":34}
+{"timestamp":"2026-02-01T09:46:20.661244Z","level":"info","event":"Database Connection is established.","logger":"helper_functions","filename":"helper_functions.py","lineno":43}
+{"timestamp":"2026-02-01T09:46:20.661723Z","level":"info","event":"Creating schema and table if not exist...","logger":"helper_functions","filename":"helper_functions.py","lineno":50}
+{"timestamp":"2026-02-01T09:46:20.679336Z","level":"info","event":"schema and table ensured.","logger":"helper_functions","filename":"helper_functions.py","lineno":67}
+{"timestamp":"2026-02-01T09:46:20.679840Z","level":"info","event":"Inserting weather data into the database...","logger":"helper_functions","filename":"helper_functions.py","lineno":73}
+{"timestamp":"2026-02-01T09:46:20.680311Z","level":"info","event":"Prepqring insert for city : New York","logger":"helper_functions","filename":"helper_functions.py","lineno":78}
+{"timestamp":"2026-02-01T09:46:20.715259Z","level":"info","event":"insert successfully completed.","logger":"helper_functions","filename":"helper_functions.py","lineno":98}
+{"timestamp":"2026-02-01T09:46:20.716093Z","level":"info","event":"Database connection closed","logger":"helper_functions","filename":"helper_functions.py","lineno":115}
+{"timestamp":"2026-02-01T09:46:20.717282Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":216}
+{"timestamp":"2026-02-01T09:46:21.029712Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-02-01T09:46:21.030292Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-02-01T09:46:21.047188Z","level":"info","event":"Task operator:<Task(PythonOperator): ingest_weather_data>","logger":"task.stdout"}
