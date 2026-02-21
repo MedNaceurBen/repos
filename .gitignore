@@ -29,3 +29,5 @@ airflow/logs/
 
 # Secrets
 .env
+
+notes.txt
